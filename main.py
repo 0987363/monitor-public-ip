@@ -47,7 +47,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
     parser.add_argument("--name", default="My", help="network name")
-    parser.add_argument("--cache", default="public_ip_cache.txt", help="cache file path")
+    parser.add_argument("--cache", default="./public_ip_cache.txt", help="cache file path")
     parser.add_argument("--token", help="Telegram bot token.")
     parser.add_argument("--chat", help="Telegram chat id.")
 
@@ -68,7 +68,6 @@ if __name__ == "__main__":
             message = f"{args.name} Public IP modified！\nOld IP: {last_ip}\nNew IP: {current_ip}"
             send_telegram_message(args.token, args.chat, message)
             save_cached_ip(args.cache, current_ip)
-            last_ip = current_ip
         else:
             print("IP no change.")
     else:
